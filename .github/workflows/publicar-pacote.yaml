@@ -1,9 +1,7 @@
 name: Publicar pacote NPM
 on:
-  push:
-    branches:
-      - main
-
+  workflow_dispatch:
+ 
 jobs:
   publish:
     runs-on: ubuntu-latest
