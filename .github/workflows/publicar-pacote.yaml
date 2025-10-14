@@ -1,6 +1,5 @@
 name: Publicar pacote NPM
 on:
-  workflow_dispatch:
   push:
     branches:
       - main

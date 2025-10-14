@@ -1,0 +1,34 @@
+name: Buildar e subir imagem Docker
+
+on:
+  push:
+    branches:
+      - main
+  
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Login no GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build da imagem Docker
+        run: |
+          docker build \
+            --build-arg GH_PACKAGES_TOKEN=${{ secrets.GH_PACKAGES_TOKEN }} \
+            -t ghcr.io/${{ github.repository_owner }}/giropops-strigus-girus:latest aplicacao/
+
+      - name: Push da imagem
+        run: |
+          docker push ghcr.io/${{ github.repository_owner }}/giropops-strigus-girus:latest
