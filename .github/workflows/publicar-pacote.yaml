@@ -1,5 +1,4 @@
-name: Publish NPM Package
-
+name: Publicar pacote NPM
 on:
   workflow_dispatch:
   push:
@@ -9,8 +8,9 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout código
+      - name: Checkout do código
         uses: actions/checkout@v3
 
       - name: Configurar Node.js
@@ -23,10 +23,10 @@ jobs:
       - name: Autenticar com GitHub Packages
         run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.NODE_AUTH_TOKEN }}" > ~/.npmrc
 
-      - name: Instalar dependências
-        run: npm install
-
       - name: Publicar pacote
-        run: npm publish
+        working-directory: pacote
+        run: |
+          npm install
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
