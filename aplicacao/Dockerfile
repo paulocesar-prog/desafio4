@@ -4,7 +4,7 @@ ARG GH_PACKAGES_TOKEN
 ENV NODE_AUTH_TOKEN=$GH_PACKAGES_TOKEN
 
 RUN npm config set //npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN \
- && npm config set @OWNER:registry=https://npm.pkg.github.com
+ && npm config set @paulocesar-prog:registry=https://npm.pkg.github.com
 
 WORKDIR /app
 COPY package*.json ./
