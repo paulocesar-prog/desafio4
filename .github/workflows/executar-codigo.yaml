@@ -10,6 +10,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Login no GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: rodar container
         run: docker run -d -e NOME_ALUNO=${{ vars.NOME_ALUNO }} -p 3000:3000 giropops-strigus-girus
 
