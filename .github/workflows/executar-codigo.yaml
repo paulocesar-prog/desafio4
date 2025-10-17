@@ -20,6 +20,11 @@ jobs:
       - name: rodar container
         run: docker run -d -e NOME_ALUNO=${{ vars.NOME_ALUNO }} -p 3000:3000 ghcr.io/paulocesar-prog/giropops-strigus-girus:latest
 
+      
+      - name: aguardar inicialização
+        run: sleep 20
+
+
       - name: mostrar container
         run: docker ps
 
