@@ -1,0 +1,28 @@
+name: Rodar a aplicacao
+
+on:
+  workflow_dispatch:
+
+jobs:
+  testar_aplicacao:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: rodar container
+        run: docker run -d -e NOME_ALUNO=${{ vars.NOME_ALUNO }} -p 3000:3000 giropops-strigus-girus
+
+      - name: mostra nome do aluno
+        run:  curl http://127.0.0.1:3000/
+
+    
+    
+
+ 
+
+
+
+   
+  
+
