@@ -24,7 +24,7 @@ jobs:
         run: docker ps
 
       - name: mostra nome do aluno
-        run:  curl http://127.0.0.1:3000/
+        run:  curl http://localhost:3000/
 
     
     
