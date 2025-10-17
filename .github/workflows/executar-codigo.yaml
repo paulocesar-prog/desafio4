@@ -22,7 +22,11 @@ jobs:
 
       
       - name: aguardar inicialização
-        run: sleep 20
+        run: sleep 10
+
+      
+      - name: mostrar logs do container
+        run: docker logs $(docker ps -q
 
 
       - name: mostrar container
